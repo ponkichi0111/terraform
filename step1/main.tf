@@ -10,15 +10,15 @@ resource "aws_vpc" "example_vpc" {
   }
 }
 
-# resource "aws_subnet" "example_pub1" {
-#   vpc_id = aws_vpc.example_vpc.id
-#   cidr_block = "10.0.0.0/20"
-#   map_public_ip_on_launch = true
+resource "aws_subnet" "example_pub1" {
+  vpc_id = aws_vpc.example_vpc.id
+  cidr_block = "10.0.0.0/20"
+  map_public_ip_on_launch = true
 
-#   tags = {
-#     Name = "terraform-example"
-#   }
-# }
+  tags = {
+    Name = "terraform-example"
+  }
+}
 
 # resource "aws_internet_gateway" "example_ig" {
 #   vpc_id = aws_vpc.example_vpc.id
