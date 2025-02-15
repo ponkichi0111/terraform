@@ -3,7 +3,7 @@ name: Terraform Step 1 Deployment & Destroy
 on:
   push:
     paths:
-      - 'step1/**'  # step1ディレクトリ内の変更がトリガー
+      - 'stage/service/webserver-cluster/**'  # step1ディレクトリ内の変更がトリガー
   workflow_dispatch:  # 手動トリガー
 
 jobs:
@@ -33,17 +33,17 @@ jobs:
       # 4. step1のディレクトリで初期化
       - name: Terraform Init for Step1
         run: terraform init -reconfigure
-        working-directory: step1
+        working-directory: stage/service/webserver-cluster
 
       # 5. step1用のplanを実行
       - name: Terraform Plan for Step1
         run: terraform plan
-        working-directory: step1
+        working-directory: stage/service/webserver-cluster
 
       # 6. step1用のapplyを実行
       - name: Terraform Apply for Step1
         run: terraform apply -auto-approve
-        working-directory: step1
+        working-directory: stage/service/webserver-cluster
 
   terraform-destroy:
     runs-on: ubuntu-latest
@@ -67,8 +67,8 @@ jobs:
 
       - name: Initialize Terraform
         run: terraform init -reconfigure
-        working-directory: step1
+        working-directory: stage/service/webserver-cluster
 
       - name: Destroy Terraform resources
         run: terraform destroy -auto-approve
-        working-directory: step1
+        working-directory: stage/service/webserver-cluster
